@@ -86,7 +86,7 @@
 
     function ucitajKategorije() {
         $.getJSON('server/kategorija/read.php').then(res => {
-            console.log(res);
+
             if (!res.status) {
                 alert(res.error);
                 return;

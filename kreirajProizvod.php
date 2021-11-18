@@ -28,11 +28,11 @@
                 </div>
                 <div class='form-group'>
                     <label for="slika">Slika</label>
-                    <input required name="slika" class="form-control-file" type="file" min="1" id="slika">
+                    <input required name="slika" class="form-control-file" type="file" id="slika">
                 </div>
                 <div class='form-group'>
                     <label for="opis">Opis</label>
-                    <textarea required name="opis" class="form-control" type="number" min="1" id="opis"></textarea>
+                    <textarea required name="opis" class="form-control" type="number" id="opis"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary form-control">Kreiraj</button>
             </form>
@@ -60,8 +60,7 @@
             fd.append("opis", opis);
             fd.append("cena", cena);
             fd.append("boja", boja);
-            fd.append("kategorija", boja);
-
+            fd.append("kategorija", kategorija);
             $.ajax(
                 {
                     url: "./server/proizvod/create.php",
@@ -70,8 +69,9 @@
                     processData: false,
                     contentType: false,
                     success: function (data) {
-                        if (data != '200') {
-                            alert(data);
+                        data = JSON.parse(data);
+                        if (!data.status) {
+                            alert(data.error);
                         }
 
                     },

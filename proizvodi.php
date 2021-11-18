@@ -38,7 +38,6 @@
                 alert(res.error);
                 return;
             }
-            console.log('set kategorije')
             kategorije = res.kolekcija;
             for (let kat of kategorije) {
                 $('#kategorije').append(`
@@ -54,7 +53,6 @@
                     alert(res.error);
                     return;
                 }
-                console.log('set boje')
                 boje = res.kolekcija;
 
             }))
@@ -71,21 +69,18 @@
                 alert(res.error);
                 return;
             }
-            console.log('set proizvodi')
             proizvodi = res.kolekcija || [];
             render();
         }))
     }
     function render() {
-        console.log(kategorije);
         const search = $('#search').val();
-        console.log(search);
         const sort = Number($('#sort').val());
         const kat = Number($('#kategorije').val());
         const niz = proizvodi.filter(element => {
-            return (kat === 0 || element.kategorija === kat) && (search === '' || element.naziv.includes(search))
+            return (kat == 0 || element.kategorija == kat) && element.naziv.includes(search)
         }).sort((a, b) => {
-            return (a > b) ? sort : 0 - sort;
+            return (a.cena > b.cena) ? sort : 0 - sort;
         });
         let red = 0;
         let kolona = 0;
@@ -116,6 +111,7 @@
                         </div>
                     `
             )
+            kolona++;
         }
 
     }

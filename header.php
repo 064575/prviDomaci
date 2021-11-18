@@ -35,12 +35,3 @@
             </ul>
         </div>
     </nav>
-    <style>
-        body {
-            background-image: url('img/apple.jpg');
-            background-size: cover;
-        }
-    </style>
-
-
-    </div>

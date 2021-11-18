@@ -4,13 +4,6 @@
    
     $naziv=$_POST['naziv'];
     $id=$_POST['id'];
-    if(!preg_match('/^[a-zA-Z\s]*$/',$naziv)){
-        echo json_encode([
-            'status'=>false,
-            'error'=>'Naziv se sme sastojati samo iz slova'
-        ]);
-        exit;
-    }
     if(!preg_match('/^[a-zA-Z]*$/',$naziv)){
         echo json_encode([
             'status'=>false,

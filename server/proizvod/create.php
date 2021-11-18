@@ -14,19 +14,18 @@
     $lokacija = "../../img/".$nazivSlike;
     if(!move_uploaded_file($_FILES['slika']['tmp_name'],$lokacija)){
         $lokacija="";
-      echo "Nije uspelo prebacivanje slike";
-        exit;
+      echo json_encode([
+          "status"=>false,
+          "error"=>"Nije uspelo prebacivanje slike"
+      ]);
+       
     }else{
         
         $lokacija=substr($lokacija,4);
     }
     
     $rezultat=$broker->izmeni("insert into proizvod (naziv,cena,boja,slika,opis,kategorija) values ('".$naziv."',".$cena.",".$boja.",'".$lokacija."','".$opis."',".$kategorija.") ");
-    if($rezultat['status']){
-       echo '200';
-    }else{
-       echo $rezultat['error'];
-    }
+    echo json_encode($rezultat);
     
     
     
